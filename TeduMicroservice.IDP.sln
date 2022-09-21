@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32519.379
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeduMicroservice.IDP", "TeduMicroservice.IDP.csproj", "{9309509B-5823-457E-A16E-0D412BF1D750}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9309509B-5823-457E-A16E-0D412BF1D750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9309509B-5823-457E-A16E-0D412BF1D750}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9309509B-5823-457E-A16E-0D412BF1D750}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9309509B-5823-457E-A16E-0D412BF1D750}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {076645F3-9E7D-40BD-AB40-EAD3C1274589}
+	EndGlobalSection
+EndGlobal
