@@ -1,5 +1,6 @@
 ﻿using Serilog;
 using TeduMicroservice.IDP.Extensions;
+using TeduMicroservice.IDP.Persistence;
 
 Log.Information("Starting up");
 var builder = WebApplication.CreateBuilder(args);
@@ -9,12 +10,14 @@ try
     builder.Host.AddAppConfigurations();
     builder.Host.ConfigureSerilog();
 
-
     var app = builder
         .ConfigureServices()
         .ConfigurePipeline();
-    
-    app.Run();
+
+
+    SeedUserData.EnsureSeedData(builder.Configuration.GetConnectionString("IdentitySqlConnection"));
+    app.MigrateDatabase()
+        .Run();
 }
 catch (Exception ex)
 {
@@ -25,6 +28,6 @@ catch (Exception ex)
 }
 finally
 {
-    Log.Information("Shut down Product API complete");
+    Log.Information("Shut down Identity complete");
     Log.CloseAndFlush();
 }
