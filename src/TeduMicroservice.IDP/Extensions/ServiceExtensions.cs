@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Serilog.Sinks.Elasticsearch;
+using TeduMicroservice.IDP.Common;
 using TeduMicroservice.IDP.Entities;
 using TeduMicroservice.IDP.Persistence;
 
@@ -10,6 +11,13 @@ namespace TeduMicroservice.IDP.Extensions;
 
 public static class ServiceExtensions
 {
+    public static IServiceCollection AddConfigurationSettings(this IServiceCollection services, IConfiguration configuration)
+    {
+        var eventBusSettings = configuration.GetSection(nameof(EmailSMTPSettings)).Get<EmailSMTPSettings>();
+        services.AddSingleton(eventBusSettings);
+
+        return services;
+    }
     public static void AddAppConfigurations(this ConfigureHostBuilder host)
     {
         host.ConfigureAppConfiguration((context, config) =>

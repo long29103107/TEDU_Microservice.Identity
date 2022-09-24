@@ -1,5 +1,5 @@
-using Duende.IdentityServer.Test;
 using Serilog;
+using TeduMicroservice.IDP.Services.EmailService;
 
 namespace TeduMicroservice.IDP.Extensions;
 
@@ -10,9 +10,10 @@ internal static class HostingExtensions
         // uncomment if you want to add a UI
         builder.Services.AddRazorPages();
 
+        builder.Services.AddConfigurationSettings(builder.Configuration);
         builder.Services.ConfigureIdentity(builder.Configuration);
         builder.Services.ConfigureIdentityServer(builder.Configuration);
-
+        builder.Services.AddScoped<IEmailSender, SmtpMailService>();
         builder.Services.ConfigureCookiePolicy();
         builder.Services.ConfigureCors();
         return builder.Build();
