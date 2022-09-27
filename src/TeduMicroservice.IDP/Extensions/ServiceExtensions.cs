@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using Serilog;
 using Serilog.Sinks.Elasticsearch;
 using TeduMicroservice.IDP.Common;
@@ -124,5 +124,24 @@ public static class ServiceExtensions
             .AddEntityFrameworkStores<TeduIdentityContext>()
             //.AddUserStore<TeduUserStore>()
             .AddDefaultTokenProviders();
+    }
+    public static void ConfigureSwagger(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen(c =>
+        {
+            c.EnableAnnotations();
+            c.SwaggerDoc("v1", new OpenApiInfo
+            {
+                Title = "Tedu Identity Server API",
+                Version = "v1",
+                Contact = new OpenApiContact
+                {
+                    Name = "Tedu Identity Service",
+                    Email = "long@gmail.com",
+                    Url = new Uri("https://example.com.vn")
+                }
+            });
+        });
     }
 }
