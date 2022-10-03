@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Security.Claims;
-using TeduMicroservice.IDP.Common;
-using TeduMicroservice.IDP.Entities;
+using TeduMicroservice.IDP.Infrastructure.Common;
+using TeduMicroservice.IDP.Infrastructure.Entities;
 
 namespace TeduMicroservice.IDP.Persistence;
 

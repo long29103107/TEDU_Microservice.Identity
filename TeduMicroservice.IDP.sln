@@ -5,7 +5,11 @@ VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9159763C-F284-4755-8C70-4623742AB62A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeduMicroservice.IDP.Presentation", "src\TeduMicroservice.IDP.Presentation\TeduMicroservice.IDP.Presentation.csproj", "{498E894D-42C3-4CD1-9797-AB4FF36F6CBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeduMicroservice.IDP.Presentation", "src\TeduMicroservice.IDP.Presentation\TeduMicroservice.IDP.Presentation.csproj", "{498E894D-42C3-4CD1-9797-AB4FF36F6CBE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeduMicroservice.IDP", "src\TeduMicroservice.IDP\TeduMicroservice.IDP.csproj", "{E976A532-D769-4943-9EFC-12077CE54D4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeduMicroservice.IDP.Infrastructure", "src\TeduMicroservice.IDP.Infrastructure\TeduMicroservice.IDP.Infrastructure.csproj", "{9B67A9C6-A0CA-401E-9C21-E52A476657B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +21,22 @@ Global
 		{498E894D-42C3-4CD1-9797-AB4FF36F6CBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{498E894D-42C3-4CD1-9797-AB4FF36F6CBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{498E894D-42C3-4CD1-9797-AB4FF36F6CBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E976A532-D769-4943-9EFC-12077CE54D4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E976A532-D769-4943-9EFC-12077CE54D4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E976A532-D769-4943-9EFC-12077CE54D4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E976A532-D769-4943-9EFC-12077CE54D4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B67A9C6-A0CA-401E-9C21-E52A476657B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B67A9C6-A0CA-401E-9C21-E52A476657B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B67A9C6-A0CA-401E-9C21-E52A476657B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B67A9C6-A0CA-401E-9C21-E52A476657B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{498E894D-42C3-4CD1-9797-AB4FF36F6CBE} = {9159763C-F284-4755-8C70-4623742AB62A}
+		{E976A532-D769-4943-9EFC-12077CE54D4D} = {9159763C-F284-4755-8C70-4623742AB62A}
+		{9B67A9C6-A0CA-401E-9C21-E52A476657B5} = {9159763C-F284-4755-8C70-4623742AB62A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {076645F3-9E7D-40BD-AB40-EAD3C1274589}

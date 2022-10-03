@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using System.Linq.Expressions;
 using TeduMicroservice.IDP.Persistence;
 
-namespace TeduMicroservice.IDP.Common.Domains;
+namespace TeduMicroservice.IDP.Infrastructure.Common.Domains;
 
 
 public class RepositoryBase<T, K> : IRepositoryBase<T, K>

@@ -1,7 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Serilog;
-using TeduMicroservice.IDP.Common.Domains;
-using TeduMicroservice.IDP.Common.Repositories;
+﻿using Serilog;
+using TeduMicroservice.IDP.Infrastructure.Common.Domains;
+using TeduMicroservice.IDP.Infrastructure.Common.Repositories;
 using TeduMicroservice.IDP.Presentation;
 using TeduMicroservice.IDP.Services.EmailService;
 

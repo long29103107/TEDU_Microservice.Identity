@@ -4,8 +4,8 @@ using Duende.IdentityServer.Services;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using System.Text.Json;
-using TeduMicroservice.IDP.Common;
-using TeduMicroservice.IDP.Entities;
+using TeduMicroservice.IDP.Infrastructure.Common;
+using TeduMicroservice.IDP.Infrastructure.Entities;
 
 namespace TeduMicroservice.IDP.Extensions;
 

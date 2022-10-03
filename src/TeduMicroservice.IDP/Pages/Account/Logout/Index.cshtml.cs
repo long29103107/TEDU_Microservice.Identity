@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using TeduMicroservice.IDP.Entities;
+using TeduMicroservice.IDP.Infrastructure.Entities;
 
 namespace TeduMicroservice.IDP.Pages.Logout;
 

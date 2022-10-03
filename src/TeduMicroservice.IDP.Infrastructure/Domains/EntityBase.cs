@@ -1,4 +1,4 @@
-﻿namespace TeduMicroservice.IDP.Common.Domains;
+﻿namespace TeduMicroservice.IDP.Infrastructure.Common.Domains;
 
 public abstract class EntityBase<TKey> : IEntityBase<TKey>
 {

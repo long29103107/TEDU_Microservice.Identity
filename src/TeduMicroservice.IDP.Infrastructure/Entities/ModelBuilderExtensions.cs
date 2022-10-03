@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TeduMicroservice.IDP.Common;
-namespace TeduMicroservice.IDP.Entities;
+using TeduMicroservice.IDP.Infrastructure.Common;
+
+namespace TeduMicroservice.IDP.Infrastructure.Entities;
 
 public static class ModelBuilderExtensions
 {

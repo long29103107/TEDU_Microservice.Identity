@@ -1,6 +1,6 @@
 ﻿using TeduMicroservice.IDP.Persistence;
 
-namespace TeduMicroservice.IDP.Common.Domains;
+namespace TeduMicroservice.IDP.Infrastructure.Common.Domains;
 
 public class UnitOfWork : IUnitOfWork
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
 using System.Linq.Expressions;
 
-namespace TeduMicroservice.IDP.Common.Domains;
+namespace TeduMicroservice.IDP.Infrastructure.Common.Domains;
 
 public interface IRepositoryBase<T, K> where T : EntityBase<K>
 {

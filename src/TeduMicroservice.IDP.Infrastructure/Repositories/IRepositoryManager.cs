@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
-using TeduMicroservice.IDP.Entities;
+using TeduMicroservice.IDP.Infrastructure.Entities;
 
-namespace TeduMicroservice.IDP.Common.Repositories;
+namespace TeduMicroservice.IDP.Infrastructure.Common.Repositories;
 
 public interface IRepositoryManager
 {
