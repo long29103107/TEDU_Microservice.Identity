@@ -8,7 +8,9 @@ public interface IPermissionRepository : IRepositoryBase<Permission, int>
 {
     Task<IReadOnlyList<PermissionViewModel>> GetPermissionByRole(string roleId);
 
-    void UpdatePermission(string roleId, IEnumerable<Permission> permisstionCollection, bool trackChanges);
+    Task<PermissionViewModel?> CreatePermission(string roleId, PermissionAddModel model); 
 
+    Task UpdatePermission(string roleId, IEnumerable<PermissionAddModel> permisstionCollection);
 
+    Task DeletePermission(string roleId, string function, string command);
 }

@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore.Storage;
 using System.Linq.Expressions;
 using TeduMicroservice.IDP.Infrastructure.Exceptions;
 using TeduMicroservice.IDP.Persistence;
+using IDbTransaction = System.Data.IDbTransaction;
+using CommandType = System.Data.CommandType;
 
 namespace TeduMicroservice.IDP.Infrastructure.Common.Domains;
 
@@ -118,7 +120,7 @@ public class RepositoryBase<T, K> : IRepositoryBase<T, K>
         return (await _context.Connection.QueryAsync<TModel>(sql, param, transaction, commandTimeOut, commandType)).AsList();
     }
 
-    public async Task<TModel> QueryFirstOrDefaultAsync<TModel>(string sql, object? param, System.Data.CommandType? commandType, System.Data.IDbTransaction? transaction = null, int? commandTimeOut = 30) where TModel : EntityBase<K>
+    public async Task<TModel> QueryFirstOrDefaultAsync<TModel>(string sql, object? param, System.Data.CommandType? commandType = System.Data.CommandType.StoredProcedure, System.Data.IDbTransaction? transaction = null, int? commandTimeOut = 30) where TModel : EntityBase<K>
     {
         var entity = await _context.Connection.QueryFirstOrDefaultAsync<TModel>(sql, param, transaction, commandTimeOut, commandType);
         if (entity == null)
@@ -126,14 +128,15 @@ public class RepositoryBase<T, K> : IRepositoryBase<T, K>
         return entity;
     }
 
-    public async Task<TModel> QuerySingleAsync<TModel>(string sql, object? param, System.Data.CommandType? commandType, System.Data.IDbTransaction? transaction = null, int? commandTimeOut = 30) where TModel : EntityBase<K>
+    public async Task<TModel> QuerySingleAsync<TModel>(string sql, object? param, System.Data.CommandType? commandType = System.Data.CommandType.StoredProcedure, System.Data.IDbTransaction? transaction = null, int? commandTimeOut = 30) where TModel : EntityBase<K>
     {
         return (await _context.Connection.QuerySingleAsync<TModel>(sql, param, transaction, commandTimeOut, commandType));
     }
 
-    public async Task<int> ExecuteAsync(string sql, object? param, System.Data.CommandType? commandType, System.Data.IDbTransaction? transaction, int? commandTimeOut)
+    public async Task<int> ExecuteAsync(string sql, object? param,
+        CommandType? commandType = CommandType.StoredProcedure, IDbTransaction? transaction = null, int? commandTimeout = 30)
     {
-        return await _context.Connection.ExecuteAsync(sql, param, transaction, commandTimeOut, commandType);
+        return await _context.Connection.ExecuteAsync(sql, param, transaction, commandTimeout, commandType);
     }
     #endregion
 }
