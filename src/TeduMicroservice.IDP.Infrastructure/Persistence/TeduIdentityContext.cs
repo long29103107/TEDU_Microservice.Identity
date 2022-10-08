@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using TeduMicroservice.IDP.Infrastructure.Entities;
 
 namespace TeduMicroservice.IDP.Persistence;
 
 public class TeduIdentityContext : IdentityDbContext<User>
 {
+    public IDbConnection Connection => Database.GetDbConnection();
     public TeduIdentityContext(DbContextOptions<TeduIdentityContext> options) : base(options)
     {
     }

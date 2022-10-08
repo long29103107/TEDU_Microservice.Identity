@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
+using System.Data;
 using System.Linq.Expressions;
 
 namespace TeduMicroservice.IDP.Infrastructure.Common.Domains;
@@ -28,4 +29,15 @@ public interface IRepositoryBase<T, K> where T : EntityBase<K>
     Task<IDbContextTransaction> BeginTransactionAsync();
     Task EndTransactionAsync();
     Task RollbackTransactionAsync();
+
+    #region Dapper
+    Task<IReadOnlyList<TModel>> QueryAsync<TModel>(string sql, object? param,
+        CommandType? commandType, IDbTransaction? transaction, int? commandTimeOut) where TModel : EntityBase<K>;
+    Task<TModel> QueryFirstOrDefaultAsync<TModel>(string sql, object? param,
+       CommandType? commandType, IDbTransaction? transaction, int? commandTimeOut) where TModel : EntityBase<K>;
+    Task<TModel> QuerySingleAsync<TModel>(string sql, object? param,
+       CommandType? commandType, IDbTransaction? transaction, int? commandTimeOut) where TModel : EntityBase<K>;
+    Task<int> ExecuteAsync(string sql, object? param,
+        CommandType? commandType, IDbTransaction? transaction, int? commandTimeOut);
+    #endregion 
 }

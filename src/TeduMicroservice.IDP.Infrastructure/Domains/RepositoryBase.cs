@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Dapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Linq.Expressions;
+using TeduMicroservice.IDP.Infrastructure.Exceptions;
 using TeduMicroservice.IDP.Persistence;
 
 namespace TeduMicroservice.IDP.Infrastructure.Common.Domains;
@@ -107,4 +109,31 @@ public class RepositoryBase<T, K> : IRepositoryBase<T, K>
     {
         return await FindByCondition(x => x.Id.Equals(id), false, includeProperties).FirstOrDefaultAsync();
     }
+
+
+    #region
+    public async Task<IReadOnlyList<TModel>> QueryAsync<TModel>(string sql, object? param, 
+        System.Data.CommandType? commandType = System.Data.CommandType.StoredProcedure, System.Data.IDbTransaction? transaction = null, int? commandTimeOut = 30) where TModel : EntityBase<K>
+    {
+        return (await _context.Connection.QueryAsync<TModel>(sql, param, transaction, commandTimeOut, commandType)).AsList();
+    }
+
+    public async Task<TModel> QueryFirstOrDefaultAsync<TModel>(string sql, object? param, System.Data.CommandType? commandType, System.Data.IDbTransaction? transaction = null, int? commandTimeOut = 30) where TModel : EntityBase<K>
+    {
+        var entity = await _context.Connection.QueryFirstOrDefaultAsync<TModel>(sql, param, transaction, commandTimeOut, commandType);
+        if (entity == null)
+            throw new EntityNotFoundException();
+        return entity;
+    }
+
+    public async Task<TModel> QuerySingleAsync<TModel>(string sql, object? param, System.Data.CommandType? commandType, System.Data.IDbTransaction? transaction = null, int? commandTimeOut = 30) where TModel : EntityBase<K>
+    {
+        return (await _context.Connection.QuerySingleAsync<TModel>(sql, param, transaction, commandTimeOut, commandType));
+    }
+
+    public async Task<int> ExecuteAsync(string sql, object? param, System.Data.CommandType? commandType, System.Data.IDbTransaction? transaction, int? commandTimeOut)
+    {
+        return await _context.Connection.ExecuteAsync(sql, param, transaction, commandTimeOut, commandType);
+    }
+    #endregion
 }
