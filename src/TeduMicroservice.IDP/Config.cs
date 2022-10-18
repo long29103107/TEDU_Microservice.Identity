@@ -13,9 +13,9 @@ public static class Config
             new IdentityResources.Email(),
             new IdentityResource
             {
-                Name = "role",
+                Name = "roles",
                 UserClaims = new List<string>{
-                    "role"
+                    "roles"
                 }
             }
         };
@@ -30,13 +30,13 @@ public static class Config
     public static IEnumerable<ApiResource> ApiResources =>
         new ApiResource[]
             { 
-                new ApiResource("tedu_microservices_api","Tedu Microservices API")
+                new ApiResource("   ","Tedu Microservices API")
                 {
                     Scopes = new List<string>{ 
                         "tedu_microservices_api.read" ,
                         "tedu_microservices_api.write"
                     },
-                    UserClaims = new List<string>{"role"}
+                    UserClaims = new List<string>{"roles"}
                 }
             };
 
@@ -46,7 +46,7 @@ public static class Config
                 new()
                 {
                     ClientName = "Tedu Microservices Swagger Client",
-                    ClientId = "tedu_microservice_swagger",
+                    ClientId = "tedu_microservices_swagger",
 
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser = true,
@@ -56,21 +56,24 @@ public static class Config
                     RedirectUris = new List<string>()
                     {
                         "http://localhost:5001/swagger/oauth2-redirect.html",
+                        "http://localhost:5002/swagger/oauth2-redirect.html",
                     },
                     PostLogoutRedirectUris = new List<string>()
                     {
                         "http://localhost:5001/swagger/oauth2-redirect.html",
+                        "http://localhost:5002/swagger/oauth2-redirect.html",
                     },
                     AllowedCorsOrigins = new List<string>()
                     {
                         "http://localhost:5001",
+                        "http://localhost:5002",
                     },
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.Email,
-                        "role",
+                        "roles",
                         "tedu_microservices_api.read",
                         "tedu_microservices_api.write"
                     }
@@ -78,7 +81,7 @@ public static class Config
                 new()
                 {
                     ClientName = "Tedu Microservices Postman Client",
-                    ClientId = "tedu_microservice_postman",
+                    ClientId = "tedu_microservices_postman",
                     Enabled = true,
                     ClientUri = null,
                     RequireClientSecret = true,
@@ -105,7 +108,7 @@ public static class Config
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.Email,
-                        "role",
+                        "roles",
                         "tedu_microservices_api.read",
                         "tedu_microservices_api.write"
                     }

@@ -1,4 +1,5 @@
-﻿using Serilog;
+﻿using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using TeduMicroservice.IDP.Infrastructure.Common.Domains;
 using TeduMicroservice.IDP.Infrastructure.Common.Repositories;
 using TeduMicroservice.IDP.Presentation;
@@ -12,7 +13,7 @@ internal static class HostingExtensions
     {
         // uncomment if you want to add a UI
         builder.Services.AddRazorPages();
-
+        builder.Services.AddAutoMapper(typeof(Program));
         builder.Services.AddConfigurationSettings(builder.Configuration);
         builder.Services.ConfigureIdentity(builder.Configuration);
         builder.Services.ConfigureIdentityServer(builder.Configuration);
@@ -27,9 +28,12 @@ internal static class HostingExtensions
         {
             config.RespectBrowserAcceptHeader = true;
             config.ReturnHttpNotAcceptable = true;
+            config.Filters.Add(new ProducesAttribute("application/json", "text/plain", "text/json"));
         }).AddApplicationPart(typeof(AssemblyReference).Assembly);
+        builder.Services.ConfigureAuthentication();
+        builder.Services.ConfigureAuthorization();
         builder.Services.ConfigureSwagger(builder.Configuration);
-
+        builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
         return builder.Build();
     }
 
@@ -46,10 +50,15 @@ internal static class HostingExtensions
         app.UseStaticFiles();
         app.UseCors("CorsPolicy");
         app.UseSwagger();
-        app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tedu Identity API"))    ;
+        app.UseSwaggerUI(c =>
+            {
+                c.OAuthClientId("tedu_microservice_swagger");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tedu Identity API");
+                c.DisplayRequestDuration();
+            });
 
         app.UseRouting();
-
+        app.UseMiddleware<ErrorWrappingMiddleware>();
         app.UseCookiePolicy();
         app.UseIdentityServer();
 
@@ -57,7 +66,7 @@ internal static class HostingExtensions
         app.UseAuthorization();
         app.UseEndpoints(endpoints =>
         {
-            endpoints.MapDefaultControllerRoute();
+            endpoints.MapDefaultControllerRoute().RequireAuthorization("Bearer");
             endpoints.MapRazorPages().RequireAuthorization();
         });
 

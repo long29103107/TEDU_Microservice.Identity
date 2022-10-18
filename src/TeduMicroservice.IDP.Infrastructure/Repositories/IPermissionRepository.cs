@@ -13,4 +13,6 @@ public interface IPermissionRepository : IRepositoryBase<Permission, int>
     Task UpdatePermission(string roleId, IEnumerable<PermissionAddModel> permisstionCollection);
 
     Task DeletePermission(string roleId, string function, string command);
+
+    Task<IEnumerable<PermissionUserViewModel>> GetPermissionByUser(User user);
 }

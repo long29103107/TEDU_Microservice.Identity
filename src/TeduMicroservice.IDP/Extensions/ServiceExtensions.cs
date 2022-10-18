@@ -122,7 +122,7 @@ public static class ServiceExtensions
                 opt.Lockout.MaxFailedAccessAttempts = 3;
             })
             .AddEntityFrameworkStores<TeduIdentityContext>()
-            //.AddUserStore<TeduUserStore>()
+            .AddUserStore<TeduUserStore>()
             .AddDefaultTokenProviders();
     }
     public static void ConfigureSwagger(this IServiceCollection services, IConfiguration configuration)
@@ -141,6 +141,63 @@ public static class ServiceExtensions
                     Email = "long@gmail.com",
                     Url = new Uri("https://example.com.vn")
                 }
+            });
+            var identityServerBaseUrl = configuration.GetSection("IdentityServer:BaseUrl").Value;
+            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                Type = SecuritySchemeType.OAuth2,
+                Flows = new OpenApiOAuthFlows
+                {
+                    Implicit = new OpenApiOAuthFlow
+                    {
+                        AuthorizationUrl = new Uri($"{identityServerBaseUrl}/connect/authorize"),
+                        Scopes = new Dictionary<string,string>()
+                        {
+                            {"tedu_microservices_api.read", "Tedu Microservices API Read"},
+                            {"tedu_microservices_api.write", "Tedu Microservices API Write"}
+                        }
+                    }
+                }
+            });
+
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    new List<string>
+                    {
+                        "tedu_microservices_api.read",
+                        "tedu_microservices_api.write"
+                    }
+                }
+            });
+        });
+    }
+
+    public static void ConfigureAuthentication(this IServiceCollection services)
+    {
+        services.AddAuthentication()
+            .AddLocalApi("Bearer", options =>
+            {
+                options.ExpectedScope = "tedu_microservices_api.read";
+            });
+    }
+
+    public static void ConfigureAuthorization(this IServiceCollection services)
+    {
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("Bearer", policy =>
+            {
+                policy.AddAuthenticationSchemes("Bearer");
+                policy.RequireAuthenticatedUser();
             });
         });
     }
