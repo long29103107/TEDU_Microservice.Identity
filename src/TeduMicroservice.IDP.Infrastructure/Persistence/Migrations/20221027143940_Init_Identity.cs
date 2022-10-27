@@ -157,13 +157,13 @@ namespace TeduMicroservice.IDP.Infrastructure.Persistence.Migrations
                 schema: "Identity",
                 table: "Roles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "bcef3957-e066-4712-8e6c-e810a9a2dcd7", "226d9d05-b92e-44b9-bbb0-18dbaca965de", "Administrator", "ADMINISTRATOR" });
+                values: new object[] { "a86376da-c839-4c65-9ad1-89efdb914480", "e9e4b5ed-0796-4637-8806-cb6072b05765", "Customer", "CUSTOMER" });
 
             migrationBuilder.InsertData(
                 schema: "Identity",
                 table: "Roles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "d9152003-9a1a-47f1-8f34-f1f2b761edd6", "e435fd65-d224-4320-8a56-89902af0e19a", "Customer", "CUSTOMER" });
+                values: new object[] { "fcb66bf9-cd07-4f5c-8666-e23e62bc08ad", "d790016e-006e-4229-bb50-edf5691e1ead", "Administrator", "ADMINISTRATOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Permissions_RoleId_Function_Command",

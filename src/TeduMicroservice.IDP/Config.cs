@@ -30,7 +30,7 @@ public static class Config
     public static IEnumerable<ApiResource> ApiResources =>
         new ApiResource[]
             { 
-                new ApiResource("   ","Tedu Microservices API")
+                new ApiResource("tedu_microservices_api","Tedu Microservices API")
                 {
                     Scopes = new List<string>{ 
                         "tedu_microservices_api.read" ,

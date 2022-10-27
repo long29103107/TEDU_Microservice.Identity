@@ -12,7 +12,7 @@ using TeduMicroservice.IDP.Persistence;
 namespace TeduMicroservice.IDP.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(TeduIdentityContext))]
-    [Migration("20221020143139_Init_Identity")]
+    [Migration("20221027143940_Init_Identity")]
     partial class Init_Identity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,15 +48,15 @@ namespace TeduMicroservice.IDP.Infrastructure.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "bcef3957-e066-4712-8e6c-e810a9a2dcd7",
-                            ConcurrencyStamp = "226d9d05-b92e-44b9-bbb0-18dbaca965de",
+                            Id = "fcb66bf9-cd07-4f5c-8666-e23e62bc08ad",
+                            ConcurrencyStamp = "d790016e-006e-4229-bb50-edf5691e1ead",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "d9152003-9a1a-47f1-8f34-f1f2b761edd6",
-                            ConcurrencyStamp = "e435fd65-d224-4320-8a56-89902af0e19a",
+                            Id = "a86376da-c839-4c65-9ad1-89efdb914480",
+                            ConcurrencyStamp = "e9e4b5ed-0796-4637-8806-cb6072b05765",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
