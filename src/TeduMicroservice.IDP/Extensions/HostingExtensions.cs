@@ -52,7 +52,7 @@ internal static class HostingExtensions
         app.UseSwagger();
         app.UseSwaggerUI(c =>
             {
-                c.OAuthClientId("tedu_microservice_swagger");
+                c.OAuthClientId("tedu_microservices_swagger");
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tedu Identity API");
                 c.DisplayRequestDuration();
             });

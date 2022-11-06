@@ -1,76 +1,32 @@
-## Tedu AspNetCore Microservice:
+# Tedu Microservices Identity Project
+Identity Server for Tedu Microservices Course.
+- Tedu Microservice Course : [https://tedu.com.vn/khoa-hoc](https://tedu.com.vn/course-ref/49/C5D7O1.html)
 
-Go to folder contrain file `docker-compose`
+## Application URLs - DEVELOPMENT:
 
-1. Using docker-compose with api
-```Powershell
-docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d --remove-orphans --build
-```
+- Identity API: http://localhost:5001
 
-2. Using docker-compose not api
-```Powershell
-docker-compose -f docker-compose-not-api.yml -f docker-compose-not-api.override.yml up -d --remove-orphans --build
-```
+## Docker Command Examples
+- Create a ".env" file at the same location with docker-compose.yml file:
+  COMPOSE_PROJECT_NAME=tedu_identity
+- run command: docker-compose -f docker-compose.yml up -d --build --remove-orphans
 
+## Application URLs - PRODUCTION:
 
-## Application URLs - LOCAL Environment (Docker Container):
+## Packages References
 
-- Product API: http://localhost:6002/api/products
-- Customer API: http://localhost:6003/api/customers
-- Basket API: http://localhost:6004/api/baskets
-- Ordering API: http://localhost:6005/api/v1/order
-- Inventory API: http://localhost:6006/api/inventory
-- Ocelot gateway: http://localhost:6001/api
-
-## Docker Application URLs - LOCAL Environment (Docker Container):
-
-- Portainer: http://localhost:9000 - username: admin ; pass: admin123456789
-- Kibana: http://localhost:5601 - username: elastic ; pass: admin
-- RabbitMQ: http://localhost:15672 - username: guest ; pass: guest
-
-2. Using Visual Studio 2022
-- Open aspnetcore-microservice.sln - `aspnetcore-microservice.sln`
-- Run Compound to start muti projects
-
-## Application URLs - DEVELOPMENT Environment
-- Product API: http://localhost:5002/api/products
-- Customer API: http://localhost:5003/api/customers
-- Basket API: http://localhost:5004/api/baskets
-- Ordering API: http://localhost:5005/api/v1/order
-- Inventory API: http://localhost:5006/api/inventory
-- Ocelot gateway: http://localhost:5001/api
-
-------------
-## Application URLs - PRODUCTION Environment
-
-------------
-
-## Package References
+- https://github.com/serilog/serilog/wiki/Getting-Started
+- https://github.com/IdentityServer/IdentityServer4.Quickstart.UI
 
 ## Install Environment
 
-- https://dotnet.microsoft.com/download/dotnet/6.0
-- https://visualstudio.microsoft.com
-
-## References URLs 
-- https://github.com/jasontaylordev/CleanArchitecture
+## References URLS
 
 
-## Docker Commands:
-
-docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d --remove-orphans --build
+## Migrations commands (cd into TeduMicroservices.IDP project):
+- dotnet ef database update -c PersistedGrantDbContext
+- dotnet ef database update -c ConfigurationDbContext
+- dotnet ef migrations add "Init_Identity" -c TeduIdentityContext -s TeduMicroservice.IDP.csproj -p ../TeduMicroservice.IDP.Infrastructure/TeduMicroservice.IDP.Infrastructure.csproj -o Persistence/Migrations
+- dotnet ef database update -c TeduIdentityContext -s TeduMicroservice.IDP.csproj -p ../TeduMicroservice.IDP.Infrastructure/TeduMicroservice.IDP.Infrastructure.csproj
 
 ## Useful commands:
-
-- ASPNETCORE_ENVIRONMENT=Development dotnet ef database update
-- dotnet watch run --environment "Development"
-- dotnet restore
-- dotnet build
-- Migrations commands:
-
-    CD into Ordering folder: 
-    -   Add Migration: dotnet ef migrations add "NameOfMigration" -p Ordering.Infrastructure --startup-project Ordering.API --output-dir Persistence/Migrations
-
-    -   Update database: dotnet ef database update -p Ordering.Infrastructure --startup-project Ordering.API
-
-    -   Remove migration: dotnet ef migrations remove -p Ordering.Infrastructure --startup-project Ordering.API --output-dir Persistence/Migrations
