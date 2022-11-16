@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Public\**" />
+    <Content Remove="Public\**" />
+    <EmbeddedResource Remove="Public\**" />
+    <None Remove="Public\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="docker-compose.yml" />
   </ItemGroup>
   
