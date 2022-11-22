@@ -233,7 +233,5 @@ _Pvt_Extensions
 # FAKE - F# Make
 .fake/
 
-**/appsettings.Development.json
-**/appsettings.Production.json
 .idea/.idea.OctoQual/.idea
 **/~$*.xlsx
