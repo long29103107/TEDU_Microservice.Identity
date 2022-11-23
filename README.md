@@ -5,6 +5,7 @@ Identity Server for Tedu Microservices Course.
 ## Application URLs - DEVELOPMENT:
 
 - Identity API: http://localhost:5001
+https://identity-tedu-long.azurewebsites.net/
 
 ## Docker Command Examples
 - Create a ".env" file at the same location with docker-compose.yml file:
